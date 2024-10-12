@@ -3,8 +3,8 @@ export const COLORS = {
 	card: {
 		background: '#2A2A35',
 	},
-	primary: '#5A67D8',
-	secondary: '#38B2AC',
+	primary: '#4F46E5',
+	secondary: '#6B7280',
 	text: {
 		primary: '#E2E8F0',
 		secondary: '#A0AEC0',
