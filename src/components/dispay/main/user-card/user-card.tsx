@@ -1,35 +1,45 @@
 import { Result } from '@/types/user.types'
 import { NextPage } from 'next'
-
+import { useState } from 'react'
+import { Dialog } from '../dialog/dialog'
+import styles from './user-card.module.scss'
 interface IProps {
 	user: Result
 }
-
 export const UserCard: NextPage<IProps> = ({ user }) => {
+	const [isDialogOpen, setIsDialogOpen] = useState<boolean>(false)
 	return (
-		<div className='bg-card-background px-6 py-4 rounded-md shadow-lg text-white flex flex-col items-center w-[320px]'>
-			<img
-				className='rounded-full mb-4 w-32 h-32 object-cover border-2 border-primary transition-transform transform hover:scale-105'
-				src={user.picture.large}
-				alt={user.name.first}
-			/>
-			<h2 className='text-xl font-bold text-center'>
-				{user.name.first} {user.name.last}
-			</h2>
-			<p className='text-gray-300'>{user.gender}</p>
-			<p className='text-gray-400 text-center'>
-				{user.location.city}, {user.location.country}
-			</p>
-			<p className='text-gray-400'>{user.email}</p>
-
-			<div className='mt-4 flex gap-4'>
-				<button className='bg-primary border-2 transform active:translate-y-[1px] border-solid hover:text-primary border-primary hover:bg-[transparent] text-white font-bold py-2 px-4 rounded-md transition-all duration-300'>
-					Save
-				</button>
-				<button className='bg-secondary text-white font-bold py-2 px-4 hover:text-secondary rounded-md transform active:translate-y-[1px] transition-all border-2 border-solid border-secondary hover:bg-[transparent] duration-300'>
-					Weather
-				</button>
+		<div className={styles.container}>
+			<div className={styles.card}>
+				<img
+					className={styles.img}
+					src={user.picture.large}
+					alt={user.name.first}
+				/>
+				<h2 className={styles.username}>
+					{user.name.first} {user.name.last}
+				</h2>
+				<p className={styles.gender}>{user.gender}</p>
+				<p className={styles.location}>
+					{user.location.city}, {user.location.country}
+				</p>
+				<p className={styles.email}>{user.email}</p>
+				<div className={styles.buttons}>
+					<button className={styles.save}>Save</button>
+					<button
+						onClick={() => setIsDialogOpen(true)}
+						className={styles.weather}
+					>
+						Weather
+					</button>
+				</div>
 			</div>
+			<Dialog
+				isOpen={isDialogOpen}
+				onClose={() => setIsDialogOpen(false)}
+				title={`${user.location.city}, ${user.location.country}`}
+				params={user.location.coordinates}
+			/>
 		</div>
 	)
 }

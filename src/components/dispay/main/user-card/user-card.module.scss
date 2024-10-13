@@ -1,0 +1,38 @@
+.container {
+	.card {
+		@apply bg-card-background px-6 py-4 rounded-md shadow-lg  flex flex-col items-center w-[320px];
+		.img {
+			@apply rounded-md w-32 object-cover aspect-square;
+		}
+		.username {
+			@apply text-xl font-bold text-center mt-4 text-text-primary;
+		}
+
+		.gender {
+			@apply text-text-secondary;
+		}
+
+		.location {
+			@apply text-center;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+		}
+
+		.email {
+			@apply text-sm;
+		}
+
+		.buttons {
+			@apply mt-4 flex gap-3;
+
+			.save {
+				@apply bg-primary border-2 transform active:translate-y-[1px] border-solid hover:text-primary border-primary hover:bg-[transparent] text-text-primary font-bold py-1 px-4 rounded-md transition-all duration-200;
+			}
+
+			.weather {
+				@apply bg-secondary text-text-primary font-bold py-1 px-4 hover:text-secondary rounded-md transform active:translate-y-[1px] transition-all border-2 border-solid border-secondary hover:bg-[transparent] duration-200;
+			}
+		}
+	}
+}
