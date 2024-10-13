@@ -1,9 +1,19 @@
 import { NextPage } from 'next'
-
+import Link from 'next/link'
+import styles from './navbar.module.scss'
 export const Navbar: NextPage = () => {
 	return (
-		<nav className='bg-card-background p-4 flex justify-between items-center'>
-			<div className='text-white text-xl font-bold'>This Is Software</div>
+		<nav className={styles.nav}>
+			<div className={styles.logo}>
+				<Link href={'/'}>This Is Software</Link>
+			</div>
+			<ul className={styles.list}>
+				<li className={styles.element}>
+					<Link href={'/saved-users'} className={styles.link}>
+						Saved users
+					</Link>
+				</li>
+			</ul>
 		</nav>
 	)
 }

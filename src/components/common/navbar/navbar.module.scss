@@ -1,0 +1,28 @@
+.nav {
+	@apply bg-card-background p-4 flex justify-between items-center shadow-md;
+
+	.logo {
+		@apply text-text-primary text-2xl font-bold tracking-wide hover:opacity-90 transition-opacity duration-300;
+	}
+
+	.list {
+		@apply mr-10;
+		.element {
+			@apply relative;
+
+			.link {
+				@apply text-text-primary text-base font-semibold transition-colors duration-300 hover:text-primary;
+				&:before {
+					content: '';
+					@apply absolute bottom-[-4px] left-0 w-0 h-[2px] bg-primary transition-all duration-300;
+				}
+
+				&:hover {
+					&:before {
+						@apply w-full;
+					}
+				}
+			}
+		}
+	}
+}
