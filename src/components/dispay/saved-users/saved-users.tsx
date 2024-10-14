@@ -7,16 +7,19 @@ import { UsersList } from '../main/users-list/users-list'
 
 export const SavedUsers: NextPage = () => {
 	const { savedUsers, isLoading } = useSavedUser()
-
 	return (
 		<main className='flex justify-center items-center flex-col'>
 			<div className='text-center mt-2'>
 				<h1 className='text-xl font-bold'>Saved users</h1>
 			</div>
 			<UsersList>
-				{isLoading
-					? Array.from({ length: 8 }).map((_, i) => <Skeleton key={i} />)
-					: savedUsers.map((el, i) => <UserCard key={i} user={el} />)}
+				{isLoading ? (
+					Array.from({ length: 8 }).map((_, i) => <Skeleton key={i} />)
+				) : savedUsers.length ? (
+					savedUsers.map((el, i) => <UserCard key={i} user={el} />)
+				) : (
+					<div>No saved users</div>
+				)}
 			</UsersList>
 		</main>
 	)

@@ -1,8 +1,8 @@
-import { Result } from '@/types/user.types'
+import { UserResult } from '@/types/user.types'
 import { useLocalStorage } from './useLocalStorage'
 
-export const useSavedUser = (user?: Result) => {
-	const [savedUsers, setSavedUsers, isLoading] = useLocalStorage<Result[]>({
+export const useSavedUser = (user?: UserResult) => {
+	const [savedUsers, setSavedUsers, isLoading] = useLocalStorage<UserResult[]>({
 		key: 'savedUsers',
 		defaultValue: [],
 	})
@@ -11,10 +11,12 @@ export const useSavedUser = (user?: Result) => {
 		if (!user) return
 
 		const currentUsers = window.localStorage.getItem('savedUsers')
-		let updatedUsers: Result[] = currentUsers ? JSON.parse(currentUsers) : []
+		let updatedUsers: UserResult[] = currentUsers
+			? JSON.parse(currentUsers)
+			: []
 
 		const isUserAlreadySaved = updatedUsers.some(
-			(el: Result) => el.id.value === user.id.value
+			(el: UserResult) => el.id.value === user.id.value
 		)
 		if (!isUserAlreadySaved) {
 			updatedUsers.push(user)
@@ -25,8 +27,10 @@ export const useSavedUser = (user?: Result) => {
 
 	const handleRemoveUser = (id: string) => {
 		const currentUsers = window.localStorage.getItem('savedUsers')
-		let updatedUsers: Result[] = currentUsers ? JSON.parse(currentUsers) : []
-		updatedUsers = updatedUsers.filter((el: Result) => el.id.value !== id)
+		let updatedUsers: UserResult[] = currentUsers
+			? JSON.parse(currentUsers)
+			: []
+		updatedUsers = updatedUsers.filter((el: UserResult) => el.id.value !== id)
 		setSavedUsers(updatedUsers)
 		window.localStorage.setItem('savedUsers', JSON.stringify(updatedUsers))
 	}

@@ -5,8 +5,8 @@ import { weatherCodeMapping } from '@/constants/weather.constant'
 import { cn } from '@/lib/utils'
 import { IWeatherParams } from '@/types/weather.types'
 import { NextPage } from 'next'
+import styles from './dialog.module.scss'
 import { Skeleton } from './skeleton'
-
 interface IProps {
 	isOpen: boolean
 	onClose: () => void
@@ -29,22 +29,16 @@ export const Dialog: NextPage<IProps> = props => {
 
 	return (
 		<div
-			className={cn(
-				'fixed inset-0 flex items-center justify-center z-50 bg-[#000] bg-opacity-50 transition-all duration-300',
-				{
-					['opacity-0 invisible']: !isOpen,
-					['opacity-100 visible']: isOpen,
-				}
-			)}
+			className={cn(styles.container, {
+				['opacity-0 invisible']: !isOpen,
+				['opacity-100 visible']: isOpen,
+			})}
 		>
 			<div
-				className={cn(
-					'bg-background p-8 rounded-lg shadow-lg max-w-md w-full transition-all duration-300 transform',
-					{
-						['opacity-0 invisible translate-y-10 scale-75']: !isOpen,
-						['opacity-100 visible translate-y-0 scale-100']: isOpen,
-					}
-				)}
+				className={cn(styles.dialog, {
+					['opacity-0 invisible translate-y-10 scale-75']: !isOpen,
+					['opacity-100 visible translate-y-0 scale-100']: isOpen,
+				})}
 			>
 				<CloseIcon className='absolute top-4 right-4' onClick={onClose} />
 				{error ? (
@@ -67,20 +61,20 @@ export const Dialog: NextPage<IProps> = props => {
 								<p>
 									<strong className='text-gray-400'>
 										Current Temperature:
-									</strong>{' '}
+									</strong>
 									{currentTemperature}°C
 								</p>
 								<p>
 									<strong className='text-gray-400'>
 										Lowest Temperature Today:
-									</strong>{' '}
+									</strong>
 									{lowestTemperature}
 									°C
 								</p>
 								<p>
 									<strong className='text-gray-400'>
 										Highest Temperature Today:
-									</strong>{' '}
+									</strong>
 									{highestTemperature}°C
 								</p>
 							</div>

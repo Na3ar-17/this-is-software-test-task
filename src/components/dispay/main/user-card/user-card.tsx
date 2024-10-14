@@ -1,12 +1,12 @@
 import { useSavedUser } from '@/hooks/useSavedUser'
-import { Result } from '@/types/user.types'
+import { UserResult } from '@/types/user.types'
 import { NextPage } from 'next'
 import { useEffect, useState } from 'react'
 import { Dialog } from '../dialog/dialog'
 import styles from './user-card.module.scss'
 
 interface IProps {
-	user: Result
+	user: UserResult
 }
 export const UserCard: NextPage<IProps> = ({ user }) => {
 	const [isDialogOpen, setIsDialogOpen] = useState<boolean>(false)

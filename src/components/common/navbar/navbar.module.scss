@@ -26,3 +26,23 @@
 		}
 	}
 }
+
+@media only screen and (max-width: 501px) {
+	.nav {
+		.logo {
+			@apply text-xl;
+		}
+	}
+}
+
+@media only screen and (max-width: 401px) {
+	.nav {
+		.logo {
+			@apply text-xl;
+		}
+
+		.list {
+			@apply mr-5;
+		}
+	}
+}

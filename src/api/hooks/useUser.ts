@@ -4,10 +4,9 @@ import { userService } from '../services/user.service'
 export const useUser = () => {
 	const useGetMany = (results: number) => {
 		return useQuery({
-			queryKey: ['users'],
+			queryKey: ['users', results],
 			queryFn: () => userService.getMany(results),
 			refetchInterval: 3000 * 100,
-			retry: 1,
 			staleTime: Infinity,
 		})
 	}

@@ -1,0 +1,15 @@
+.container {
+	@apply fixed inset-0 flex items-center justify-center z-50 bg-[#000] bg-opacity-50 transition-all duration-300;
+
+	.dialog {
+		@apply bg-background p-8 rounded-lg shadow-lg max-w-md w-full transition-all duration-300 transform;
+	}
+}
+
+@media only screen and (max-width: 501px) {
+	.container {
+		.dialog {
+			@apply w-[90%];
+		}
+	}
+}

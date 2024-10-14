@@ -1,5 +1,5 @@
 export interface UserResponse {
-	results: Result[]
+	results: UserResult[]
 	info: Info
 }
 
@@ -10,7 +10,7 @@ export interface Info {
 	version: string
 }
 
-export interface Result {
+export interface UserResult {
 	gender: string
 	name: Name
 	location: Location
