@@ -3,7 +3,9 @@ import { useUser } from '@/api/hooks/useUser'
 import { ErrorMessage } from '@/components/ui/error-message/error-message'
 import { NextPage } from 'next'
 import styles from './main.module.scss'
+import { Skeleton } from './user-card/skeleton'
 import { UserCard } from './user-card/user-card'
+import { UsersList } from './users-list/users-list'
 
 export const Main: NextPage = () => {
 	const { useGetMany } = useUser()
@@ -14,11 +16,11 @@ export const Main: NextPage = () => {
 			{error ? (
 				<ErrorMessage message={error.message} />
 			) : (
-				<div className={styles.users}>
-					{data?.results.map((el, i) => (
-						<UserCard user={el} key={i} />
-					))}
-				</div>
+				<UsersList>
+					{isLoading
+						? Array.from({ length: 8 }).map((_, i) => <Skeleton key={i} />)
+						: data?.results.map((el, i) => <UserCard user={el} key={i} />)}
+				</UsersList>
 			)}
 			{!error && !isLoading && (
 				<footer className='flex justify-center mt-5 mb-10'>

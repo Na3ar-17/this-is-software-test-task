@@ -8,6 +8,7 @@ export const useUser = () => {
 			queryFn: () => userService.getMany(results),
 			refetchInterval: 3000 * 100,
 			retry: 1,
+			staleTime: Infinity,
 		})
 	}
 	return { useGetMany }
