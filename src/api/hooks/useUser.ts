@@ -6,7 +6,6 @@ export const useUser = () => {
 		return useQuery({
 			queryKey: ['users', results],
 			queryFn: () => userService.getMany(results),
-			refetchInterval: 3000 * 100,
 			staleTime: Infinity,
 		})
 	}

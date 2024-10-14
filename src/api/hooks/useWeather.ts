@@ -14,6 +14,7 @@ export const useWeather = () => {
 			queryFn: () => weatherService.getOne(params),
 			enabled: canFetch,
 			retry: 0,
+			refetchInterval: 3000 * 100,
 		})
 	}
 	return { useGetOne }
